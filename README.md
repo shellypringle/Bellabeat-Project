@@ -107,6 +107,7 @@ On average the participants were the most sedentary on Mondays and Tuesdays, wit
 Here I looked for a correlation between sleep recorded and activity (here in the form of calories burned in a day)
 
 ![](sleepvscalories.png)
+
 Though there do appear to be clusters of users, there does not appear to be a strong correlation between the time a user sleeps and the amount of calories they burn in a day.
 
 Next I looked at the comparison between daytime and nighttime use:
