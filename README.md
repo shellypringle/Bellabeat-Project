@@ -88,9 +88,11 @@ ORDER BY logged_activity DESC
 ```
 
 ![](activitybyusertype.png)
+
 Low users (users who wore the device less than 25 out of the 31 day period) tend to burn the least calories, despite wearing the device for the longest amount of time per day.
 
 ![](2022-08-28-16-30-50.png)
+
 For all participants, usage decreased dramatically over the 31 day time period.
 
 Here I wanted to investigate the link between the day of the week and sedentary vs. active hours recorded.
@@ -99,9 +101,11 @@ SELECT dayofweek, SedentaryHours
 FROM `coursera-project-358501.fitbit_data.activity`
 ```
 ![](sedentaryhoursduringweek.png)
+
 On average the participants were the most sedentary on Mondays and Tuesdays, with Thursdays being the least.
 
 Here I looked for a correlation between sleep recorded and activity (here in the form of calories burned in a day)
+
 ![](sleepvscalories.png)
 Though there do appear to be clusters of users, there does not appear to be a strong correlation between the time a user sleeps and the amount of calories they burn in a day.
 
