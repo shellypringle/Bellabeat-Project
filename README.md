@@ -42,13 +42,6 @@ SELECT *
 FROM `coursera-project-358501.fitbit_data.activity` a
 LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
 ON a.id = s.id
-
-SELECT
- Id,
- ROUND (AVG(TotalSteps),2) avg_steps,
- ROUND (AVG(TotalHours),2) avg_hours
-FROM `coursera-project-358501.fitbit_data.activity`
-GROUP BY Id
 ```
 
 I then grouped users into categories, based on logged activity:
