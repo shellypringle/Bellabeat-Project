@@ -36,12 +36,21 @@ Upon download of the files, the following steps were taken to clean the data:
 ## Data Analysis
 After cleaning data in Google Sheets, I used SQL Big Query and Tableau to organize and visualize trends in the data.
 
-First I gathered some general user data:
+First I looked at some general user data:
 ```TSQL
 SELECT *
 FROM `coursera-project-358501.fitbit_data.activity` a
 LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
 ON a.id = s.id
+
+SELECT 
+  id, 
+  activitydate, 
+  totaldistance,
+  (SUM(totaldistance) OVER (PARTITION BY id ORDER BY activitydate),1) running_total_distance,
+  calories,
+  SUM(calories) OVER (PARTITION BY id ORDER BY activitydate) running_total_calories
+FROM `coursera-project-358501.fitbit_data.activity`
 ```
 
 I then grouped users into categories, based on logged activity:
