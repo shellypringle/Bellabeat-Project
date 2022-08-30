@@ -38,6 +38,11 @@ After cleaning data in Google Sheets, I used SQL Big Query and Tableau to organi
 
 First I gathered some general user data:
 ```TSQL
+SELECT *
+FROM `coursera-project-358501.fitbit_data.activity` a
+LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
+ON a.id = s.id
+
 SELECT
  Id,
  ROUND (AVG(TotalSteps),2) avg_steps,
