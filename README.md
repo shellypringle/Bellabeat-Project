@@ -99,6 +99,20 @@ ORDER BY logged_activity DESC
 
 Low users (users who wore the device less than 25 out of the 31 day period) tend to burn the least calories, despite wearing the device for the longest amount of time per day.
 
+```TSQL
+SELECT
+ Id, activitydate,
+ COUNT(Id) as logged_activity,
+ ROUND (AVG(TotalHours),2) avg_hours,
+ CASE 
+  WHEN COUNT(Id) >= 30 THEN 'high_user'
+  WHEN COUNT(Id) BETWEEN 26 AND 29 THEN 'moderate_user'
+  WHEN COUNT(Id) < 25 THEN 'low_user'
+END AS type_of_user
+FROM `coursera-project-358501.fitbit_data.activity`
+GROUP BY Id, activitydate
+ORDER BY logged_activity DESC
+```
 ![](2022-08-28-16-30-50.png)
 
 For all participants, usage decreased dramatically over the 31 day time period.
