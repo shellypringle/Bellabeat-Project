@@ -150,7 +150,9 @@ Though there do appear to be clusters of users, there does not appear to be a st
 
 Next I looked at the comparison between daytime and nighttime use:
 ```TSQL
-SELECT COUNT (distinct s.id) sleep_count, COUNT(distinct a.id) activity_count
+SELECT 
+COUNT (distinct s.id) sleep_count, 
+COUNT(distinct a.id) activity_count
 FROM `coursera-project-358501.fitbit_data.sleep` s
   RIGHT JOIN `coursera-project-358501.fitbit_data.activity` a on a.id = s.id
 ```
