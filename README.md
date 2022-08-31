@@ -40,8 +40,8 @@ First I looked at some general user data:
 ```TSQL
 SELECT *
 FROM `coursera-project-358501.fitbit_data.activity` a
-LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
-ON a.id = s.id
+ LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
+ ON a.id = s.id
 
 SELECT 
   id, 
@@ -55,6 +55,7 @@ FROM `coursera-project-358501.fitbit_data.activity`
 
 I then grouped users into categories, based on logged activity:
 ```TSQL
+CREATE VIEW fitbit_data.usertype AS (
 SELECT
  Id,
  COUNT(Id) as logged_activity,
@@ -65,7 +66,7 @@ SELECT
 END AS type_of_user
 FROM `coursera-project-358501.fitbit_data.activity`
 GROUP BY Id
-ORDER BY logged_activity DESC
+ORDER BY logged_activity DESC)
 ```
 
 ![](2022-08-29-11-10-37.png)
