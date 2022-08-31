@@ -113,7 +113,23 @@ FROM `coursera-project-358501.fitbit_data.activity`
 On average the participants were the most sedentary on Mondays and Tuesdays, with Thursdays being the least.
 
 Here I looked for a correlation between sleep recorded and activity (here in the form of calories burned in a day)
-
+```TSQL
+SELECT
+ a.Id,
+ COUNT(a.Id) as logged_activity,
+ CASE 
+  WHEN COUNT(a.Id) >= 30 THEN 'high_user'
+  WHEN COUNT(a.Id) BETWEEN 26 AND 29 THEN 'moderate_user'
+  WHEN COUNT(a.Id) < 25 THEN 'low_user'
+END AS type_of_user,
+s.totalhoursasleep,
+a.calories,
+a.totalsteps
+FROM `coursera-project-358501.fitbit_data.activity` a
+JOIN fitbit_data.sleep s ON a.id = s.id
+GROUP BY a.id, s.totalhoursasleep,a.calories, a.totalsteps
+ORDER BY logged_activity DESC
+```
 ![](sleepvscalories.png)
 
 Though there do appear to be clusters of users, there does not appear to be a strong correlation between the time a user sleeps and the amount of calories they burn in a day.
