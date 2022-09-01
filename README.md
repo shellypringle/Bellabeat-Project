@@ -40,8 +40,18 @@ First I looked at some general user data:
 ```TSQL
 SELECT *
 FROM `coursera-project-358501.fitbit_data.activity` a
- LEFT JOIN `coursera-project-358501.fitbit_data.sleep` s
+ JOIN `coursera-project-358501.fitbit_data.sleep` s
  ON a.id = s.id
+ 
+SELECT
+  Id,
+  activitydate,
+  sum(totalsteps) totalsteps,
+  sum(calories) calories,
+  sum(totaldistance) distance
+FROM `coursera-project-358501.fitbit_data.activity`
+GROUP BY Id, activitydate
+ORDER BY 1, 2
 
 SELECT 
   id, 
@@ -101,7 +111,8 @@ Low users (users who wore the device less than 25 out of the 31 day period) tend
 
 ```TSQL
 SELECT
- Id, activitydate,
+ Id, 
+ activitydate,
  COUNT(Id) as logged_activity,
  ROUND (AVG(TotalHours),2) avg_hours,
  CASE 
@@ -131,11 +142,6 @@ Here I looked for a correlation between sleep recorded and activity (here in the
 SELECT
  a.Id,
  COUNT(a.Id) as logged_activity,
- CASE 
-  WHEN COUNT(a.Id) >= 30 THEN 'high_user'
-  WHEN COUNT(a.Id) BETWEEN 26 AND 29 THEN 'moderate_user'
-  WHEN COUNT(a.Id) < 25 THEN 'low_user'
-END AS type_of_user,
 s.totalhoursasleep,
 a.calories,
 a.totalsteps
